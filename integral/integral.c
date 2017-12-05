@@ -44,11 +44,11 @@ double integral(double von, double bis, int anzahl) {
 double integral_trapez(double von, double bis, int n) {
 	double ergebnis = 0;
 	double h = (bis - von) / n;
+	int i;
 
-	for (int i = 1; i <= n-1; i++)	{
+	for (i = 1; i <= n-1; i++)	{
 		ergebnis = ergebnis + f(von + i*h);
 	}
-
 	ergebnis = (ergebnis*2 + f(von) + f(bis))*(h / 2);
 	return ergebnis;
 }
@@ -83,7 +83,6 @@ int main(void) {
 		} while (janein != 'y' && janein != 'n');
 		printf("\n\n");
 	} while (janein == 'y');
-	
 		
 	return 0;
 }
