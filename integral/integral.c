@@ -1,9 +1,12 @@
 /*
 Aufgabe	5.2		integral.c	
 Autor			Florian Bopp
-Datum		
+Datum			6.12.17
 
-Kurzbeschreibung:
+Kurzbeschreibung:	Diese Programm berechnet ein Integral einer beliebigen Funktion auf 2 verschiedene varianten.
+					In aufgabe (a) wird ein beispielrechteck berechnet. In Aufgabe (b) wird wird über eine Funktion 
+					ein Integral berechnet und in aufgabe (c) wird dies wiederholt über eie andere Funktion welche 
+					die Trapezformel für integrale beinhaltet.
 
 */
 #define _CRT_SECURE_NO_WARNINGS
@@ -17,25 +20,26 @@ void flashStandardInput(void){
 	while ((intCharacter = getchar()) != '\n' && intCharacter != EOF);
 }
 
+//Irgendeine Mathematische funktion von welcher ein Integral berechnet werden soll
 double f(double x) {
 	return 4 - x*x;
 }
 
 //Aufgabe (a)
 double flaeche(double von, double bis) {
-	return  f((von + bis) / 2);
+	return  f((von + bis) / 2);					//berechnung eines rechtecks
 }
 
 //Aufgabe (b)
-double integral(double von, double bis, int anzahl) {
+double integral(double von, double bis, int anzahl) {	
 	double ergebnis = 0;
-	double teilvon = von;
-	double teilbis = (bis - von)/anzahl;
+	double teilvon = von;								//variable welche sich im forloop weiterschiebt
+	double teilbis = (bis - von)/anzahl;				//variable welche sic im foorloop weiterschiebt
 	int i;
 	
-	for ( i = 1; i <= anzahl; i++)	{
-		ergebnis = ergebnis + f((teilvon + teilbis * i + von) / 2)*(teilbis * i + von - teilvon);
-		teilvon = teilbis * i + von;
+	for ( i = 1; i <= anzahl; i++)	{					//For loop für die menge der teilintervalle
+		ergebnis = ergebnis + f((teilvon + teilbis * i + von) / 2)*(teilbis * i + von - teilvon);		//vorheriges ergebnis wird addiert mit dem Funktionswert der Mitte zwischen den teilintervallgrenzen und multipliziert mit der breite des teilintervalls
+		teilvon = teilbis * i + von;					//teilvon wird der aktuelle wert von teilbis zugeordnet
 	}
 	return ergebnis;
 }
